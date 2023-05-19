@@ -1,0 +1,45 @@
+# Зададим алфавит
+Alphabet
+  b d g p t k ts kh f s x h w l j m n r 
+  ǀ ǃ ǂ ǁ 
+  ǀg ǃg ǂg ǁg 
+  ǀh ǃh ǂh ǁh
+  ǀkh ǃkh ǂkh ǁkh
+  ǀn ǃn ǂn ǁn
+  a e i o u
+  ̂ ͡
+  ̏ ̀  ́ 	̋
+  ̄
+  %>:0
+  %{N%}:n %{N%}:m
+  %{I%}:0 %{I%}:i
+  %{B%}:0 %{B%}:b
+  %{PGN3SGm%}:b %{PGN3SGm%}:i
+  %{Space%}:% 
+;
+
+Sets
+Consonant = b d g p t k ts kh f s x h w j;
+Sonorant = l m n r;
+Clicks = ǀ ǃ ǂ ǁ ǀg ǃg ǂg ǁg ǀh ǃh ǂh ǁh ǀkh ǃkh ǂkh ǁkh ǀn ǃn ǂn ǁn;
+Vowels = a e i o u;
+Nasalisation = ̂ ͡;
+Tones = ̏ ̀  ́  ̋;
+Long = ̄;
+
+# Установим морфологические правила и правила замены
+Rules
+"Space"
+%{Space%}:%  <=> _ ;
+"PGN 3sgm n"
+%{N%}:n <=> n _ ;
+"PGN 3sgm m"
+%{N%}:m <=> m _ ;
+"PGN 3sgm i"
+%{PGN3SGm%}:i <=> Sonorant _ ;
+"PGN 3plc in"
+%{I%}:i <=> Sonorant _ ;
+"PGN 3sgmobl a"
+%{B%}:0 <=> Sonorant _ ;
+"intervocalic p to w"
+p:w <=> Vowel _ Vowel ;
